@@ -64,7 +64,8 @@ LINK_ROM_LIB_NS =
 ifeq ($(CONFIG_MATTER_EN), y)
 LINK_ROM_SYMBOL_NS = $(MATTER_BUILDDIR)/ld/rlx8721d_rom_symbol_acut_matter.ld
 else
-LINK_ROM_SYMBOL_NS = ./ld/rlx8721d_rom_symbol_acut.ld
+# LINK_ROM_SYMBOL_NS = ./ld/rlx8721d_rom_symbol_acut.ld
+LINK_ROM_SYMBOL_NS = ./ld/rlx8721d_rom_symbol_acut_awsiotshd.ld
 endif
 LINK_ROM_SYMBOL_S = ./ld/rlx8721d_rom_symbol_acut_s.ld
 LINK_ROM_SYMBOL_BOOT = ./ld/rlx8721d_rom_symbol_acut_boot.ld
@@ -138,7 +139,7 @@ ifeq ($(CONFIG_WIFI_EN), y)
 LINK_APP_LIB += $(ROOTDIR)/lib/application/lib_httpc.a
 LINK_APP_LIB += $(ROOTDIR)/lib/application/lib_httpd.a
 LINK_APP_LIB += $(ROOTDIR)/lib/application/lib_mdns.a
-LINK_APP_LIB += $(ROOTDIR)/lib/application/lib_websocket.a
+# LINK_APP_LIB += $(ROOTDIR)/lib/application/lib_websocket.a
 LINK_APP_LIB += $(ROOTDIR)/lib/application/lib_tftp.a
 LINK_APP_LIB += $(ROOTDIR)/lib/application/lib_dct.a
 LINK_APP_LIB += $(ROOTDIR)/lib/application/lib_coap.a
@@ -211,6 +212,21 @@ endif
 ifeq ($(CONFIG_MATTER_EN), y)
 LINK_APP_LIB += -Wl,--start-group $(ROOTDIR)/lib/application/lib_main.a $(ROOTDIR)/lib/application/libCHIP.a -Wl,--end-group
 endif
+
+ # AWS IoT Smart Home Main
+LINK_APP_LIB += -Wl,--start-group
+LINK_APP_LIB += $(ROOTDIR)/lib/application/libiotshd_main.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libcjson.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libcoreMQTT.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libcorePKCS11.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libcorejson.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libiotjobs.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libiotshd_device_DataModelHandler.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libiotshd_device_FleetProvisioning.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libiotshd_device_MqttAgent.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libiotshd_jobs_handler.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libiotshd_mqtt_adapter.a
+LINK_APP_LIB += -Wl,--end-group
 
 rom: build_target_folder copy_ld_rom check_toolchain build_info.h make_subdirs_rom package_prebuilt_rom_objs rom_linker 
 rom_ns: build_target_folder copy_ld_rom_ns check_toolchain build_info.h make_subdirs_rom_ns package_prebuilt_rom_objs rom_linker_ns 
@@ -286,7 +302,7 @@ make_subdirs_lib:
 	@make -C make/wps all
 	@make -C make/network/httpc all
 	@make -C make/network/httpd all
-	@make -C make/network/websocket all
+	# @make -C make/network/websocket all
 	#@make -C make/network/http2 all
 	@make -C make/network/eap all
 	@make -C make/network/tftp all

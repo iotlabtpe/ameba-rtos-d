@@ -141,7 +141,8 @@
 #define CONFIG_MBED_TLS_ENABLED 1
 #undef  CONFIG_SSL_ROM_TEST
 #undef  MBEDTLS_V_3_4_0_ENABLE
-#define MBEDTLS_V_2_4_0_ENABLE 1
+#define MBEDTLS_V_2_28_1_ENABLE 1
+#undef  MBEDTLS_V_2_4_0_ENABLE
 
 /*
  * < DuerOS Config 
