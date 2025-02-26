@@ -500,8 +500,8 @@
 #include <matter_example_entry.h>
 #endif
 
-#if defined(CONFIG_EXAMPLE_AWS_IOTSHD) && CONFIG_EXAMPLE_AWS_IOTSHD
-#include <aws_iotshd/example_aws_iotshd.h>
+#if defined(CONFIG_EXAMPLE_AWS_IOTMI) && CONFIG_EXAMPLE_AWS_IOTMI
+#include <aws_iotmi/example_aws_iotmi.h>
 #endif
 
 /*
@@ -1161,7 +1161,7 @@ example_hilink();
 	matter_example_entry();
 #endif
 
-#if defined(CONFIG_EXAMPLE_AWS_IOTSHD) && CONFIG_EXAMPLE_AWS_IOTSHD
-	example_aws_iotshd();
+#if defined(CONFIG_EXAMPLE_AWS_IOTMI) && CONFIG_EXAMPLE_AWS_IOTMI
+	example_aws_iotmi();
 #endif
 }

@@ -25,7 +25,7 @@ endif
 	@make -C xmodem all
 	#@make -C game_headset all
 	#@make -C airkiss all
-	@make -C aws_iotshd all
+	@make -C aws_iotmi all
 #*****************************************************************************#
 #              CLEAN GENERATED FILES                                          #
 #*****************************************************************************#
@@ -39,5 +39,5 @@ clean:
 ifeq ($(CONFIG_MATTER_EN),y)
 	@make -C $(MATTER_BUILDDIR)/make clean
 endif
-	@make -C aws_iotshd clean
+	@make -C aws_iotmi clean
 -include $(DEPS)

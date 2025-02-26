@@ -65,7 +65,7 @@ ifeq ($(CONFIG_MATTER_EN), y)
 LINK_ROM_SYMBOL_NS = $(MATTER_BUILDDIR)/ld/rlx8721d_rom_symbol_acut_matter.ld
 else
 # LINK_ROM_SYMBOL_NS = ./ld/rlx8721d_rom_symbol_acut.ld
-LINK_ROM_SYMBOL_NS = ./ld/rlx8721d_rom_symbol_acut_awsiotshd.ld
+LINK_ROM_SYMBOL_NS = ./ld/rlx8721d_rom_symbol_acut_awsiotmi.ld
 endif
 LINK_ROM_SYMBOL_S = ./ld/rlx8721d_rom_symbol_acut_s.ld
 LINK_ROM_SYMBOL_BOOT = ./ld/rlx8721d_rom_symbol_acut_boot.ld
@@ -215,17 +215,17 @@ endif
 
  # AWS IoT Smart Home Main
 LINK_APP_LIB += -Wl,--start-group
-LINK_APP_LIB += $(ROOTDIR)/lib/application/libiotshd_main.a
-LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libcjson.a
-LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libcoreMQTT.a
-LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libcorePKCS11.a
-LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libcorejson.a
-LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libiotjobs.a
-LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libiotshd_device_DataModelHandler.a
-LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libiotshd_device_FleetProvisioning.a
-LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libiotshd_device_MqttAgent.a
-LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libiotshd_jobs_handler.a
-LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotshd/IoT-Smarthome-Device-SDK/lib/libiotshd_mqtt_adapter.a
+LINK_APP_LIB += $(ROOTDIR)/lib/application/libiotmi_main.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotmi/IoT-Managed-Integrations-End-Device-SDK/lib/libcjson.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotmi/IoT-Managed-Integrations-End-Device-SDK/lib/libcoreMQTT.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotmi/IoT-Managed-Integrations-End-Device-SDK/lib/libcorePKCS11.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotmi/IoT-Managed-Integrations-End-Device-SDK/lib/libcorejson.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotmi/IoT-Managed-Integrations-End-Device-SDK/lib/libiotjobs.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotmi/IoT-Managed-Integrations-End-Device-SDK/lib/libiotmi_device_DataModelHandler.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotmi/IoT-Managed-Integrations-End-Device-SDK/lib/libiotmi_device_FleetProvisioning.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotmi/IoT-Managed-Integrations-End-Device-SDK/lib/libiotmi_device_MqttAgent.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotmi/IoT-Managed-Integrations-End-Device-SDK/lib/libiotmi_jobs_handler.a
+LINK_APP_LIB += $(BASEDIR)/component/common/application/aws_iotmi/IoT-Managed-Integrations-End-Device-SDK/lib/libiotmi_mqtt_adapter.a
 LINK_APP_LIB += -Wl,--end-group
 
 rom: build_target_folder copy_ld_rom check_toolchain build_info.h make_subdirs_rom package_prebuilt_rom_objs rom_linker 

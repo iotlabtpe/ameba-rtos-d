@@ -16,7 +16,7 @@
 
 #include <sntp/sntp.h>
 
-#include <iotshd_main.h>
+#include <iotmi_main.h>
 
 #include <mbedtls/threading.h>
 #include <mbedtls/entropy.h>
@@ -79,7 +79,7 @@ int mbedtls_hardware_poll(void *data, unsigned char *output, size_t len, size_t 
     return 0;
 }
 
-static void aws_iotshd_thread(void *param)
+static void aws_iotmi_thread(void *param)
 {
     while (wifi_is_ready_to_transceive(RTW_STA_INTERFACE) != RTW_SUCCESS)
     {
@@ -97,13 +97,13 @@ static void aws_iotshd_thread(void *param)
     size_t xFreeBytesRemaining = xPortGetFreeHeapSize();
     printf("Free memory: %d\n", xFreeBytesRemaining);
 
-    aws_iotshd_main();
+    aws_iotmi_main();
 
     vTaskDelete(NULL);
 }
 
-void example_aws_iotshd(void)
+void example_aws_iotmi(void)
 {
-    if (xTaskCreate(aws_iotshd_thread, ((const char *)"aws_iotshd_thread"), 4096, NULL, tskIDLE_PRIORITY + 1, NULL) != pdPASS)
-        printf("\n\r%s xTaskCreate(aws_iotshd_thread) failed", __FUNCTION__);
+    if (xTaskCreate(aws_iotmi_thread, ((const char *)"aws_iotmi_thread"), 4096, NULL, tskIDLE_PRIORITY + 1, NULL) != pdPASS)
+        printf("\n\r%s xTaskCreate(aws_iotmi_thread) failed", __FUNCTION__);
 }

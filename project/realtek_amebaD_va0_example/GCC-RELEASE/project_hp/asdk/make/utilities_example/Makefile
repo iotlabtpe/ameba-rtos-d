@@ -53,7 +53,7 @@ IFLAGS += -I$(BASEDIR)/component/common/drivers/usb/host/cdc_acm
 IFLAGS += -I$(BASEDIR)/component/common/drivers/usb/host/cdc_ecm
 endif
 
-IFLAGS += -I$(BASEDIR)/component/common/application/aws_iotshd/examples
+IFLAGS += -I$(BASEDIR)/component/common/application/aws_iotmi/examples
 
 .PHONY: all clean
 
@@ -212,7 +212,7 @@ CSRC += $(DIR)/linkkit/linkkit_awss_example.c
 endif
 
 # AWS IoT SmartHome examples
-CSRC += $(DIR)/aws_iotshd/example_aws_iotshd.c
+CSRC += $(DIR)/aws_iotmi/example_aws_iotmi.c
 #*****************************************************************************#
 #                               Object FILE LIST                              #
 #*****************************************************************************#
